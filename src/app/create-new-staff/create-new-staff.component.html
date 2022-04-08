@@ -1,0 +1,25 @@
+<h2>Create New Staff</h2>
+
+<p>
+	{{message}}
+</p>
+
+	<table border="1">
+		<tbody>		
+			<tr>
+				<th>Staff ID</th>
+				<td><input type="text" [(ngModel)]="staff.staffId" /></td>
+			</tr>
+			
+			<tr>
+				<th>Email</th>
+				<td><input type="text" [(ngModel)]="staff.email" /></td>
+			</tr>
+			
+			<tr>
+				<td colspan="2">
+					<button (click)="createStaff()">Create Staff</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>

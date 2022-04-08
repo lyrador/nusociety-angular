@@ -1,0 +1,16 @@
+<h2>View All Staffs</h2>
+	
+	<table border="1">
+		<thead>
+			<tr>
+				<th>Staff ID</th>
+				<th>Email</th>				
+			</tr>
+		</thead>
+		<tbody>
+			<tr *ngFor="let staff of staffs">
+				<td>{{staff.staffId}}</td>
+				<td>{{staff.email}}</td>				
+			</tr>
+		</tbody>
+	</table>
