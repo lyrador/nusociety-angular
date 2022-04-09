@@ -20,37 +20,45 @@ export class StaffService {
    }
 
    getStaffs(): Observable<Staff[]>
-		{				
-		  return this.httpClient.get<Staff[]>(this.baseUrl + "/retrieveAllStaffs").pipe
-		  (
-			catchError(this.handleError)
-		  );
-		}
+	{				
+		return this.httpClient.get<Staff[]>(this.baseUrl + "/retrieveAllStaffs").pipe
+		(
+		catchError(this.handleError)
+		);
+	}
 		
-		createNewStaff(newStaff: Staff): Observable<number>
+	createNewStaff(newStaff: Staff): Observable<number>
+	{		
+		return this.httpClient.put<number>(this.baseUrl, newStaff, httpOptions).pipe
+		(
+		catchError(this.handleError)
+		);
+	}
+		
+	private handleError(error: HttpErrorResponse)
+	{
+		let errorMessage: string = "";
+	
+		if (error.error instanceof ErrorEvent) 
 		{		
-		  return this.httpClient.put<number>(this.baseUrl, newStaff, httpOptions).pipe
-		  (
+		errorMessage = "An unknown error has occurred: " + error.error;
+		} 
+		else 
+		{		
+		errorMessage = "A HTTP error has occurred: " + `HTTP ${error.status}: ${error.error}`;
+		}
+		
+		console.error(errorMessage);
+		
+		return throwError(() => new Error(errorMessage));
+	}
+	
+	staffLogin(username: string | undefined, password: string | undefined): Observable<Staff>
+	{
+		return this.httpClient.get<Staff>(this.baseUrl + "/staffLogin?username=" + username + "&password=" + password).pipe
+		(
 			catchError(this.handleError)
-		  );
-		}
-		
-		private handleError(error: HttpErrorResponse)
-		{
-		  let errorMessage: string = "";
-		
-		  if (error.error instanceof ErrorEvent) 
-		  {		
-			errorMessage = "An unknown error has occurred: " + error.error;
-		  } 
-		  else 
-		  {		
-			errorMessage = "A HTTP error has occurred: " + `HTTP ${error.status}: ${error.error}`;
-		  }
-		  
-		  console.error(errorMessage);
-		  
-		  return throwError(() => new Error(errorMessage));
-		}
+		);
+	}
 
 }
