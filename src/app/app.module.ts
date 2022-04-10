@@ -8,6 +8,15 @@ import {PanelModule} from 'primeng/panel';
 import {ButtonModule} from 'primeng/button';
 import {DialogModule} from 'primeng/dialog';
 import {RatingModule} from 'primeng/rating';
+import {CheckboxModule} from 'primeng/checkbox';
+import {DropdownModule} from 'primeng/dropdown';;
+import {ToastModule} from 'primeng/toast';
+import {CalendarModule} from 'primeng/calendar';
+import {SliderModule} from 'primeng/slider';
+import {MultiSelectModule} from 'primeng/multiselect';
+import {ContextMenuModule} from 'primeng/contextmenu';
+import {ProgressBarModule} from 'primeng/progressbar';
+import {InputTextModule} from 'primeng/inputtext';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +28,9 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { ViewAllStaffsComponent } from './view-all-staffs/view-all-staffs.component';
 import { CreateNewStaffComponent } from './create-new-staff/create-new-staff.component';
 import { ViewAllStaffsPfComponent } from './view-all-staffs-pf/view-all-staffs-pf.component';
+import { PostManagementComponent } from './post-management/post-management.component';
+import { CommentManagementComponent } from './comment-management/comment-management.component';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +42,9 @@ import { ViewAllStaffsPfComponent } from './view-all-staffs-pf/view-all-staffs-p
     HeaderComponent,
     ViewAllStaffsComponent,
     CreateNewStaffComponent,
-    ViewAllStaffsPfComponent
+    ViewAllStaffsPfComponent,
+    PostManagementComponent,
+    CommentManagementComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +55,17 @@ import { ViewAllStaffsPfComponent } from './view-all-staffs-pf/view-all-staffs-p
     TableModule,
     ButtonModule,
     DialogModule,
-    RatingModule
+    RatingModule,
+    CheckboxModule,
+    DropdownModule,
+    ToastModule,
+    CalendarModule,
+    SliderModule,
+    MultiSelectModule,
+    ContextMenuModule,
+    ProgressBarModule,
+    InputTextModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

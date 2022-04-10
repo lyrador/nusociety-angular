@@ -1,0 +1,86 @@
+<h2>Post Management</h2>
+
+<div *ngIf="infoMessage" class="infoText">
+	{{infoMessage}}
+</div>
+
+<div *ngIf="errorMessage" class="errorText">
+	{{errorMessage}}
+</div>
+
+<div class="card">
+
+	<p-table #dt2 [value]="posts" dataKey="postId" [rows]="10" [showCurrentPageReport]="true"
+		[rowsPerPageOptions]="[10,25,50]" [paginator]="true"
+		currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+		[globalFilterFields]="['.postId','creationDate','bodyContent', 'postIsPublic']">
+
+		<ng-template pTemplate="header">
+			<tr>
+				<th>Post ID</th>
+				<th>Creation Date</th>
+				<th>Content</th>
+				<th>Post is Public</th>
+				<th>Action</th>
+			</tr>
+			<tr>
+				<th>
+					<p-columnFilter type="text" field="postId"></p-columnFilter>
+				</th>
+
+				<th>
+					<p-columnFilter type="text" field="creationDate"></p-columnFilter>
+				</th>
+
+				<th>
+					<p-columnFilter type="text" field="bodyContent"></p-columnFilter>
+				</th>
+
+				<th>
+					<p-columnFilter type="boolean" field="postIsPublic"></p-columnFilter>
+				</th>
+				<th></th>
+
+			</tr>
+		</ng-template>
+		<ng-template pTemplate="body" let-post>
+			<tr>
+				<td>
+					{{post.postId}}
+				</td>
+
+				<td>
+					{{post.creationDate}}
+				</td>
+
+				<td>
+					<b>Current Content: </b>{{post.bodyContent}}
+					<br><br>
+					<b>Updated Content: </b><input type="text" [(ngModel)]="post.bodyContent" />
+				</td>
+
+				<td>
+					<i class="pi"
+						[ngClass]="{'true-icon pi-check-circle': post.postIsPublic, 'false-icon pi-times-circle': !post.postIsPublic}">
+					</i>
+					<br><br>
+					<p-checkbox [(ngModel)]="post.postIsPublic" [binary]="true" inputId="binary">
+					</p-checkbox>
+					
+					<label for="binary"> {{post.postIsPublic}}</label>
+				</td>
+				<td>
+					<p-button label="Update Post" (click)="updatePost(post)" style="margin-right: 20px;">
+					</p-button>
+					<button pButton pRipple type="button" label="Delete Post"
+						class="p-button-danger" (click)="deletePost(post)" update=""></button>
+				</td>
+			</tr>
+		</ng-template>
+		<ng-template pTemplate="emptymessage">
+			<tr>
+				<td colspan="5">No Posts found.</td>
+			</tr>
+		</ng-template>
+	</p-table>
+</div>
