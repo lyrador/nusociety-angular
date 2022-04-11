@@ -1,3 +1,5 @@
+import { Society } from "./society";
+
 export class Staff {
     staffId: number | undefined;
     email: string | undefined;
@@ -5,7 +7,7 @@ export class Staff {
     username: string | undefined;
     profilePicture : string | undefined;
 
-    // societies: Society[] | undefined;
+    societies: Society[] | undefined;
 
     constructor(staffId?: number, email?: string, password?: string, username?: string, profilePicture?: string) {
         this.staffId = staffId;

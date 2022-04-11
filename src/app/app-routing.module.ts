@@ -6,6 +6,10 @@ import { ViewAllStaffsComponent } from './view-all-staffs/view-all-staffs.compon
 import { ViewAllStaffsPfComponent } from './view-all-staffs-pf/view-all-staffs-pf.component';
 import { CreateNewStaffComponent } from './create-new-staff/create-new-staff.component';
 import { ViewSocietyCategoriesComponent } from './view-society-categories/view-society-categories.component';
+import { PostManagementComponent } from './post-management/post-management.component';
+import { CommentManagementComponent } from './comment-management/comment-management.component';
+import { SocietyManagementComponent } from './society-management/society-management.component';
+import { ViewFeedbackSurveysComponent } from './view-feedback-surveys/view-feedback-surveys.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/index', pathMatch: 'full' },
@@ -13,7 +17,11 @@ const routes: Routes = [
 	{ path: 'viewAllStaffs', component: ViewAllStaffsComponent },
   { path: 'viewAllStaffsPf', component: ViewAllStaffsPfComponent },
 	{ path: 'createNewStaff', component: CreateNewStaffComponent },
-  { path: 'viewSocietyCategories', component: ViewSocietyCategoriesComponent }
+  { path: 'societyCategoryManagement', component: ViewSocietyCategoriesComponent },
+  { path: 'postManagement', component: PostManagementComponent },
+  { path: 'commentManagement', component: CommentManagementComponent },
+  { path: 'societyManagement', component: SocietyManagementComponent },
+  { path: 'viewFeedbackSurveys', component: ViewFeedbackSurveysComponent }
 ];
 
 @NgModule({

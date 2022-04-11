@@ -9,6 +9,16 @@ import {PanelModule} from 'primeng/panel';
 import {ButtonModule} from 'primeng/button';
 import {DialogModule} from 'primeng/dialog';
 import {RatingModule} from 'primeng/rating';
+import {CheckboxModule} from 'primeng/checkbox';
+import {DropdownModule} from 'primeng/dropdown';
+import {ToastModule} from 'primeng/toast';
+import {CalendarModule} from 'primeng/calendar';
+import {SliderModule} from 'primeng/slider';
+import {MultiSelectModule} from 'primeng/multiselect';
+import {ContextMenuModule} from 'primeng/contextmenu';
+import {ProgressBarModule} from 'primeng/progressbar';
+import {InputTextModule} from 'primeng/inputtext';
+import { FileUploadModule } from "primeng/fileupload";
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +31,10 @@ import { ViewAllStaffsComponent } from './view-all-staffs/view-all-staffs.compon
 import { CreateNewStaffComponent } from './create-new-staff/create-new-staff.component';
 import { ViewAllStaffsPfComponent } from './view-all-staffs-pf/view-all-staffs-pf.component';
 import { ViewSocietyCategoriesComponent } from './view-society-categories/view-society-categories.component';
+import { PostManagementComponent } from './post-management/post-management.component';
+import { CommentManagementComponent } from './comment-management/comment-management.component';
+import { SocietyManagementComponent } from './society-management/society-management.component';
+import { ViewFeedbackSurveysComponent } from './view-feedback-surveys/view-feedback-surveys.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +47,11 @@ import { ViewSocietyCategoriesComponent } from './view-society-categories/view-s
     ViewAllStaffsComponent,
     CreateNewStaffComponent,
     ViewAllStaffsPfComponent,
-    ViewSocietyCategoriesComponent
+    ViewSocietyCategoriesComponent,
+    PostManagementComponent,
+    CommentManagementComponent,
+    SocietyManagementComponent,
+    ViewFeedbackSurveysComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +63,18 @@ import { ViewSocietyCategoriesComponent } from './view-society-categories/view-s
     ButtonModule,
     DialogModule,
     RatingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    CheckboxModule,
+    DropdownModule,
+    ToastModule,
+    CalendarModule,
+    SliderModule,
+    MultiSelectModule,
+    ContextMenuModule,
+    ProgressBarModule,
+    InputTextModule,
+    FileUploadModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]
