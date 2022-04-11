@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {TableModule} from 'primeng/table';
 import {PanelModule} from 'primeng/panel';
@@ -19,6 +20,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { ViewAllStaffsComponent } from './view-all-staffs/view-all-staffs.component';
 import { CreateNewStaffComponent } from './create-new-staff/create-new-staff.component';
 import { ViewAllStaffsPfComponent } from './view-all-staffs-pf/view-all-staffs-pf.component';
+import { ViewSocietyCategoriesComponent } from './view-society-categories/view-society-categories.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,8 @@ import { ViewAllStaffsPfComponent } from './view-all-staffs-pf/view-all-staffs-p
     HeaderComponent,
     ViewAllStaffsComponent,
     CreateNewStaffComponent,
-    ViewAllStaffsPfComponent
+    ViewAllStaffsPfComponent,
+    ViewSocietyCategoriesComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,8 @@ import { ViewAllStaffsPfComponent } from './view-all-staffs-pf/view-all-staffs-p
     TableModule,
     ButtonModule,
     DialogModule,
-    RatingModule
+    RatingModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
