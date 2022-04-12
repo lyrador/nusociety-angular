@@ -28,8 +28,6 @@ export class CreateNewSocietyComponent implements OnInit {
   resultError: boolean;
   message: string | undefined;
 
-
-
   constructor(private societyService: SocietyService,
               private sessionService: SessionService,
               private societyCategoryService: SocietyCategoryService,
@@ -65,6 +63,10 @@ export class CreateNewSocietyComponent implements OnInit {
       }
     })
   }
+
+  // onSelectEvent(event) {
+  //   console.log("Selected files", event);
+  // }
 
   create(createSocietyForm: NgForm) {
     if (createSocietyForm.valid) {
