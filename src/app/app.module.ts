@@ -18,7 +18,9 @@ import {MultiSelectModule} from 'primeng/multiselect';
 import {ContextMenuModule} from 'primeng/contextmenu';
 import {ProgressBarModule} from 'primeng/progressbar';
 import {InputTextModule} from 'primeng/inputtext';
-import { FileUploadModule } from "primeng/fileupload";
+import {FileUploadModule} from "primeng/fileupload";
+import { MenuModule } from 'primeng/menu';
+import {PanelMenuModule} from 'primeng/panelmenu';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,6 +37,7 @@ import { PostManagementComponent } from './post-management/post-management.compo
 import { CommentManagementComponent } from './comment-management/comment-management.component';
 import { SocietyManagementComponent } from './society-management/society-management.component';
 import { ViewFeedbackSurveysComponent } from './view-feedback-surveys/view-feedback-surveys.component';
+import { CreateNewSocietyComponent } from './create-new-society/create-new-society.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +54,8 @@ import { ViewFeedbackSurveysComponent } from './view-feedback-surveys/view-feedb
     PostManagementComponent,
     CommentManagementComponent,
     SocietyManagementComponent,
-    ViewFeedbackSurveysComponent
+    ViewFeedbackSurveysComponent,
+    CreateNewSocietyComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +77,9 @@ import { ViewFeedbackSurveysComponent } from './view-feedback-surveys/view-feedb
     ContextMenuModule,
     ProgressBarModule,
     InputTextModule,
-    FileUploadModule
+    FileUploadModule,
+    MenuModule,
+    PanelMenuModule
 
   ],
   providers: [],

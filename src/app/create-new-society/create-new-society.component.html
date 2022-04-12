@@ -1,0 +1,62 @@
+<h2>Create New Society</h2>
+<br/>
+
+<div *ngIf="resultSuccess == true" style="color:blue;">
+    {{message}}
+</div>
+
+<div *ngIf="resultError == true" style="color:red;">
+    {{message}}
+</div>
+
+<form #createSocietyForm="ngForm" (ngSubmit)="create(createSocietyForm)">
+    <table width="100%">
+        <tr>
+            <td width="20%" style="font-weight: bold;">Society Name</td>
+            <td><input id="name" name="name" #name="ngModel" type="text" placeholder="Name" [(ngModel)]="newSociety.name" required="true" /></td>
+            <td>
+                <div *ngIf="name.invalid && (name.dirty || name.touched)" class="errorText">
+                    <div *ngIf="name.errors?.['required']">
+                        Society Name is required.
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td width="20%" style="font-weight: bold;">Description</td>
+            <td><input id="description" name="description" #description="ngModel" type="text" placeholder="Description" [(ngModel)]="newSociety.description" required="true" /></td>
+            <td>
+                <div *ngIf="description.invalid && (description.dirty || description.touched)" class="errorText">
+                    <div *ngIf="description.errors?.['required']">
+                        Description is required.
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td width="20%" style="font-weight: bold;">Display Picture</td>
+            <td><p-fileUpload name="myfile[]"></p-fileUpload></td>
+            <td>
+
+            </td>
+        </tr>
+        <tr>
+            <td width="20%" style="font-weight: bold;">Society Categories</td>
+            <td>
+                <p-multiSelect name="societyCategories" [options]="societyCategories" [(ngModel)]="societyCategoryIds" defaultLabel="Select At Least One" optionLabel="societyCategoryName" optionValue="societyCategoryId"></p-multiSelect>
+            </td>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <td width="20%" style="font-weight: bold;">Staffs In Charge</td>
+            <td>
+                <p-multiSelect name="staffs" [options]="staffs" [(ngModel)]="staffIds" defaultLabel="Select At Least One" optionLabel="username" optionValue="staffId"></p-multiSelect>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <input type="submit" value="Create" />
+        </tr>
+    </table>
+</form>

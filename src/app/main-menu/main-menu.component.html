@@ -2,14 +2,16 @@
     <h3>Main Menu</h3>
     <nav>
         <br />
-        <a routerLink="/index">Home</a>
+        <ng-template [ngIf]="sessionService.getIsLogin() == false">
+            <p-menu [model]="home"></p-menu>
+        </ng-template>
 
         <ng-template [ngIf]="sessionService.getIsLogin() == true">
-            <br /><br />
-            <a class="logoutlink" (click)="staffLogout()">Logout</a>
-            <br /><br />
-            <h4 class="menuHeader1">Staff Administration</h4>
-            <ul class="secondaryMenu">
+            <p-menu [model]="homeLogout"></p-menu>
+            <br/>
+            <!-- <h4 class="menuHeader1">Staff Administration</h4> -->
+            <p-panelMenu [model]="items" [style]="{'width':'200px'}"></p-panelMenu>
+            <!-- <ul class="secondaryMenu">
                 <li><a routerLink="/viewAllStaffsPf">View All Staffs PrimeNg</a></li>
                 <li><a routerLink="/createNewStaff">Create New Staff</a></li>
                 <li><a routerLink="/postManagement">Post Management</a></li>
@@ -23,8 +25,7 @@
             <ul class="secondaryMenu">
                 <li><a routerLink="">View All Students (TBC)</a></li>
                 <li><a routerLink="">Create New Student (TBC)</a></li>
-            </ul>
-            <br /><br />
+            </ul> -->
         </ng-template>
     </nav>
 

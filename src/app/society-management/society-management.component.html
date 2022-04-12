@@ -1,10 +1,5 @@
-<h2>Society Management</h2>
+<h2>Society You Manage</h2>
 
-<br/>
-<p-button label="Create New Society" (onClick)="showDialogCreate()"></p-button>
-<br/>
-<br/>
-<h3>Societies You Manage</h3>
 <br/>
 
 <div *ngIf="resultSuccess == true" style="color:blue;">
@@ -33,67 +28,6 @@
         </tr>
     </ng-template>
 </p-table>
-
-<p-dialog *ngIf="displayCreate" header="Create Society" [(visible)]="displayCreate" [style]="{width: '55vw', height: '30vw'}">
-    <div *ngIf="resultSuccess == true" style="color:blue;">
-        {{message}}
-    </div>
-    
-    <div *ngIf="resultError == true" style="color:red;">
-        {{message}}
-    </div>
-    <form #createSocietyForm="ngForm" (ngSubmit)="create(createSocietyForm)">
-        <table >
-            <tr>
-                <td width="20%" style="font-weight: bold;">Society Name</td>
-                <td><input id="name" name="name" #name="ngModel" type="text" placeholder="Name" [(ngModel)]="newSociety.name" required="true" /></td>
-                <td>
-                    <div *ngIf="name.invalid && (name.dirty || name.touched || displayCreate)" class="errorText">
-                        <div *ngIf="name.errors?.['required']">
-                            Society Name is required.
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td width="20%" style="font-weight: bold;">Description</td>
-                <td><input id="description" name="description" #description="ngModel" type="text" placeholder="Description" [(ngModel)]="newSociety.description" required="true" /></td>
-                <td>
-                    <div *ngIf="description.invalid && (description.dirty || description.touched || displayCreate)" class="errorText">
-                        <div *ngIf="description.errors?.['required']">
-                            Description is required.
-                        </div>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td width="20%" style="font-weight: bold;">Profile Picture</td>
-                <td><p-fileUpload name="myfile[]"></p-fileUpload></td>
-                <td>
-
-                </td>
-            </tr>
-            <tr>
-                <td width="20%" style="font-weight: bold;">Society Categories</td>
-                <td>
-                    <p-multiSelect name="societyCategories" [options]="societyCategories" [(ngModel)]="societyCategoryIds" defaultLabel="Select At Least One" optionLabel="societyCategoryName" optionValue="societyCategoryId"></p-multiSelect>
-                </td>
-                <td>
-                </td>
-            </tr>
-            <tr>
-                <td width="20%" style="font-weight: bold;">Staffs In Charge</td>
-                <td>
-                    <p-multiSelect name="staffs" [options]="staffs" [(ngModel)]="staffIds" defaultLabel="Select At Least One" optionLabel="username" optionValue="staffId"></p-multiSelect>
-                </td>
-                <td></td>
-            </tr>
-            <tr>
-                <input type="submit" value="Create" />
-            </tr>
-        </table>
-    </form>
-</p-dialog>
 
 <p-dialog *ngIf="displayDelete" header="Delete Society" [(visible)]="displayDelete" [style]="{width: '50vw'}">
     <div>Are you sure you want to delete {{societyToView.name}}?</div>
