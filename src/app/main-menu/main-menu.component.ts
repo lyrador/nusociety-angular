@@ -71,8 +71,9 @@ export class MainMenuComponent implements OnInit
       {
         label: 'Student',
         icon: 'pi pi-user',
-        items: [{label: 'Create New Student', icon: 'pi pi-user-plus'},
+        items: [{label: 'Create New Student', icon: 'pi pi-user-plus', routerLink: "/createNewStudent"},
             {separator: true},
+            {label: 'View All Students', icon: 'pi pi-users', routerLink: "/viewAllStudents"}
         ]
       }
       
