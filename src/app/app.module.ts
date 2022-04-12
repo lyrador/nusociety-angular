@@ -32,6 +32,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { ViewAllStaffsComponent } from './view-all-staffs/view-all-staffs.component';
 import { CreateNewStaffComponent } from './create-new-staff/create-new-staff.component';
 import { ViewAllStaffsPfComponent } from './view-all-staffs-pf/view-all-staffs-pf.component';
+import { ViewAllStudentsComponent } from './view-all-students/view-all-students.component';
+import { CreateNewStudentComponent } from './create-new-student/create-new-student.component';
 import { ViewSocietyCategoriesComponent } from './view-society-categories/view-society-categories.component';
 import { PostManagementComponent } from './post-management/post-management.component';
 import { CommentManagementComponent } from './comment-management/comment-management.component';
@@ -50,6 +52,8 @@ import { CreateNewSocietyComponent } from './create-new-society/create-new-socie
     ViewAllStaffsComponent,
     CreateNewStaffComponent,
     ViewAllStaffsPfComponent,
+    ViewAllStudentsComponent,
+    CreateNewStudentComponent,
     ViewSocietyCategoriesComponent,
     PostManagementComponent,
     CommentManagementComponent,
