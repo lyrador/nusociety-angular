@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexComponent implements OnInit {
 
+  ImagePath: string | undefined;
   constructor() { }
 
   ngOnInit(): void {
+    this.ImagePath = '/assets/images/Welcome.gif'
   }
 
 }
