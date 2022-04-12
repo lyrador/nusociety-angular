@@ -4,6 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { Student } from '../models/student';
+import { CreateStudentReq } from '../models/create-student-req';
 
 const httpOptions = {
 	headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -27,14 +28,15 @@ export class StudentService {
 		);
 	}
 		
-	createNewStudent(newStudent: Student): Observable<number>
-	{		
-		return this.httpClient.put<number>(this.baseUrl, newStudent, httpOptions).pipe
+	createNewStudentWithEnum(newStudent: Student, accessRightSelectedString: string): Observable<number>
+	{	
+		let createStudentReq: CreateStudentReq = new CreateStudentReq(newStudent, accessRightSelectedString);	
+		return this.httpClient.put<number>(this.baseUrl, createStudentReq, httpOptions).pipe
 		(
 		catchError(this.handleError)
 		);
 	}
-		
+
 	private handleError(error: HttpErrorResponse)
 	{
 		let errorMessage: string = "";

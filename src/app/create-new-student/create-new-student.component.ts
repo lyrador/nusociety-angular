@@ -41,14 +41,9 @@ export class CreateNewStudentComponent implements OnInit {
 
   createStudent(createStudentForm: NgForm) {
     this.submitted = true;
-    if (this.accessRightSelectedString == "LEADER") {
-      this.student.accessRightEnum = AccessRightEnum.LEADER;
-    } else {
-      this.student.accessRightEnum = AccessRightEnum.MEMBER;
-    }
 
     if (createStudentForm.valid) {
-      this.studentService.createNewStudent(this.student).subscribe({
+      this.studentService.createNewStudentWithEnum(this.student, this.accessRightSelectedString).subscribe({
         next: (response) => {
           let studentId: number = response;
           this.resultSuccess = true;
