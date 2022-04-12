@@ -19,6 +19,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { ViewAllStaffsComponent } from './view-all-staffs/view-all-staffs.component';
 import { CreateNewStaffComponent } from './create-new-staff/create-new-staff.component';
 import { ViewAllStaffsPfComponent } from './view-all-staffs-pf/view-all-staffs-pf.component';
+import { ViewAllStudentsComponent } from './view-all-students/view-all-students.component';
+import { CreateNewStudentComponent } from './create-new-student/create-new-student.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { ViewAllStaffsPfComponent } from './view-all-staffs-pf/view-all-staffs-p
     HeaderComponent,
     ViewAllStaffsComponent,
     CreateNewStaffComponent,
-    ViewAllStaffsPfComponent
+    ViewAllStaffsPfComponent,
+    ViewAllStudentsComponent,
+    CreateNewStudentComponent
   ],
   imports: [
     BrowserModule,

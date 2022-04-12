@@ -73,7 +73,7 @@
 		</tr>
 		<tr>
 			<td width="20%" style="font-weight: bold;">Profile Picture</td>
-			<td><input id="profilePicture" name="profilePicture" #profilePicture="ngModel" type="text" placeholder="99" [(ngModel)]="staff.profilePicture" required="true" /></td>
+			<td><input id="profilePicture" name="profilePicture" #profilePicture="ngModel" type="text" placeholder="99" [(ngModel)]="staff.profilePicture" required="false" /></td>
 			<td>
 				<div *ngIf="profilePicture.invalid && (profilePicture.dirty || profilePicture.touched || submitted)" class="errorText">
 					<div *ngIf="profilePicture.errors?.['required']">

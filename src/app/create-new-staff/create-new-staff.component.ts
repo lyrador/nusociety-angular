@@ -53,7 +53,7 @@ export class CreateNewStaffComponent implements OnInit {
                 error:(error)=>{
                     this.resultError = true;
                     this.resultSuccess = false;
-                    this.message = "An error has occurred while creating the new product: " + error;
+                    this.message = "An error has occurred while creating the new staff: " + error;
                     
                     console.log('********** CreateNewStaffComponent.ts: ' + error);
                 }

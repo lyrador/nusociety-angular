@@ -1,0 +1,97 @@
+<h3>Create New Student</h3>
+<br/>
+
+<div *ngIf="resultSuccess == true" style="color:blue;">
+	{{message}}
+</div>
+
+<div *ngIf="resultError == true" style="color:red;">
+	{{message}}
+</div>
+		
+<form #createStudentForm="ngForm" (ngSubmit)="createStudent(createStudentForm)" >
+
+	<table>
+        <tr>
+			<td width="20%" style="font-weight: bold;">Name</td>
+			<td><input id="name" name="name" #name="ngModel" type="text" placeholder="John Doe" [(ngModel)]="student.name" required="true" /></td>
+			<td>
+				<div *ngIf="name.invalid && (name.dirty || name.touched || submitted)" class="errorText">
+					<div *ngIf="name.errors?.['required']">
+						Name is required.
+					</div>
+				</div>
+			</td>
+		</tr>		
+		<tr>
+			<td width="20%" style="font-weight: bold;">Username</td>
+			<td><input id="userName" name="userName" #userName="ngModel" type="text" placeholder="e0123454" [(ngModel)]="student.userName" required="true" /></td>
+			<td>
+				<div *ngIf="userName.invalid && (userName.dirty || userName.touched || submitted)" class="errorText">
+					<div *ngIf="userName.errors?.['required']">
+						Username is required.
+					</div>
+				</div>
+			</td>
+		</tr>	
+		<tr>
+			<td width="20%" style="font-weight: bold;">Email</td>
+			<td><input id="email" name="email" #email="ngModel" type="text" placeholder="e0123454@u.nus.edu" [(ngModel)]="student.email" required="true" /></td>
+			<td>
+				<div *ngIf="email.invalid && (email.dirty || email.touched || submitted)" class="errorText">
+					<div *ngIf="email.errors?.['required']">
+						Email is required.
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td width="20%" style="font-weight: bold;">Password</td>
+			<td><input id="password" name="password" #password="ngModel" type="text" placeholder="password" [(ngModel)]="student.password" required="true" /></td>
+			<td>
+				<div *ngIf="password.invalid && (password.dirty || password.touched || submitted)" class="errorText">
+					<div *ngIf="password.errors?.['required']">
+						Password is required.
+					</div>
+				</div>
+			</td>
+		</tr>
+        <tr>
+			<td width="20%" style="font-weight: bold;">Access Right</td>
+			<td>
+				<select id="accessRightEnum" name="accessRightEnum" #accessRightEnum="ngModel" [(ngModel)]="accessRightSelectedString" required="true">
+					<option *ngFor="let accessRightEnumOption of accessRightEnumListString" value="{{accessRightEnumOption}}">{{accessRightEnumOption}}</option>
+				</select>
+				
+			</td>
+			<td>
+				<div *ngIf="accessRightEnum.invalid && (accessRightEnum.dirty || accessRightEnum.touched || submitted)" class="errorText">
+					<div *ngIf="accessRightEnum.errors != null && accessRightEnum.errors['required']">
+						Access Right is required.
+					</div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td width="20%" style="font-weight: bold;">Profile Picture</td>
+			<td><input id="profilePicture" name="profilePicture" #profilePicture="ngModel" type="text" placeholder="99" [(ngModel)]="student.profilePicture" required="false" /></td>
+			<td>
+				<div *ngIf="profilePicture.invalid && (profilePicture.dirty || profilePicture.touched || submitted)" class="errorText">
+					<div *ngIf="profilePicture.errors?.['required']">
+						Profile Picture is required.
+					</div>
+				</div>
+			</td>
+		</tr>
+
+		<tr>
+			<td colspan="3" style="text-align: center;">
+				<button (click)="clear()">Clear</button>
+				&nbsp;
+				<input type="submit" value="Create New Student" />
+			</td>
+		</tr>
+		
+	</table>
+	
+</form>
