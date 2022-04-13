@@ -64,13 +64,10 @@ export class CreateNewSocietyComponent implements OnInit {
     })
   }
 
-  // onSelectEvent(event) {
-  //   console.log("Selected files", event);
-  // }
-
   create(createSocietyForm: NgForm) {
     if (createSocietyForm.valid) {
       this.newSociety.dateCreated = new Date();
+      this.newSociety.profilePicture = "empty_society.png";
 
       this.societyService.createNewSociety(this.newSociety, this.societyCategoryIds, this.staffIds).subscribe({
         next:(response)=>{
