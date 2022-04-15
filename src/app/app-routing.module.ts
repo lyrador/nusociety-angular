@@ -13,6 +13,7 @@ import { CommentManagementComponent } from './comment-management/comment-managem
 import { SocietyManagementComponent } from './society-management/society-management.component';
 import { ViewFeedbackSurveysComponent } from './view-feedback-surveys/view-feedback-surveys.component';
 import { CreateNewSocietyComponent } from './create-new-society/create-new-society.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/index', pathMatch: 'full' },
@@ -27,7 +28,8 @@ const routes: Routes = [
   { path: 'commentManagement', component: CommentManagementComponent },
   { path: 'societyManagement', component: SocietyManagementComponent },
   { path: 'viewFeedbackSurveys', component: ViewFeedbackSurveysComponent },
-  { path: 'createNewSociety', component: CreateNewSocietyComponent}
+  { path: 'createNewSociety', component: CreateNewSocietyComponent},
+  { path: 'changePassword', component: ChangePasswordComponent}
 ];
 
 @NgModule({

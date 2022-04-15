@@ -40,6 +40,7 @@ import { CommentManagementComponent } from './comment-management/comment-managem
 import { SocietyManagementComponent } from './society-management/society-management.component';
 import { ViewFeedbackSurveysComponent } from './view-feedback-surveys/view-feedback-surveys.component';
 import { CreateNewSocietyComponent } from './create-new-society/create-new-society.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { CreateNewSocietyComponent } from './create-new-society/create-new-socie
     CommentManagementComponent,
     SocietyManagementComponent,
     ViewFeedbackSurveysComponent,
-    CreateNewSocietyComponent
+    CreateNewSocietyComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

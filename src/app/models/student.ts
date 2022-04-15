@@ -8,7 +8,6 @@ export class Student
     password: string | undefined;
     userName: string | undefined;
     profilePicture: string | undefined;
-	accessRightEnum: AccessRightEnum | undefined;
 
     // attendances: Attendance[] | undefined;
     // notifications: Notification[] | undefined;
@@ -19,7 +18,7 @@ export class Student
     // memberSocieties: Society[] | undefined;
     // followedSocieties: Society[] | undefined;
 
-    constructor(studentId?: number, name?: string, email?: string, password?: string, userName?: string, profilePicture?: string, accessRightEnum?: AccessRightEnum)
+    constructor(studentId?: number, name?: string, email?: string, password?: string, userName?: string, profilePicture?: string)
 	{
 		this.studentId = studentId;		
 		this.name = name;
@@ -27,6 +26,5 @@ export class Student
         this.password = password;
         this.userName = userName;
         this.profilePicture = profilePicture;
-		this.accessRightEnum = accessRightEnum;
 	}
 }

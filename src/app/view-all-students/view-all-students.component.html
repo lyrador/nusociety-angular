@@ -1,5 +1,13 @@
 <h2>View All Students</h2>
 
+<div *ngIf="resultSuccess == true" style="color:blue;">
+    {{message}}
+</div>
+
+<div *ngIf="resultError == true" style="color:red;">
+    {{message}}
+</div>
+
 <p-table [value]="students">
     <ng-template pTemplate="header">
         <tr>					
@@ -7,7 +15,7 @@
             <th>Name</th>
             <th>Username</th>
             <th>Email</th>	
-            <th>Access Right</th>					
+            <th>Action</th>					
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-student>
@@ -16,8 +24,18 @@
             <td>{{student.name}}</td>	
             <td>{{student.userName}}</td>	
             <td>{{student.email}}</td>	
-            <td>{{student.accessRightEnum}}</td>	
+            <td>
+                <button pButton type="button" label="Delete" class="p-button-danger" icon="pi pi-trash" (click)="showDialogDelete(student)"></button>
+            </td>	
         </tr>
     </ng-template>
 </p-table>
+
+<p-dialog *ngIf="displayDelete" header="Delete Student" [(visible)]="displayDelete" [style]="{width: '50vw'}">
+    <div>Are you sure you want to delete {{studentToView.name}}?</div>
+    <br/>
+    <p-button label="Yes" (onClick)="delete()"></p-button>
+    &nbsp;
+    <p-button label="No"></p-button>
+</p-dialog>
 

@@ -34,6 +34,13 @@ export class StaffService {
 		catchError(this.handleError)
 		);
 	}
+
+	updateStaff(staff: Staff): Observable<any> {
+		return this.httpClient.post<any>(this.baseUrl, staff, httpOptions).pipe
+		  (
+			catchError(this.handleError)
+		  );
+	  }
 		
 	private handleError(error: HttpErrorResponse)
 	{

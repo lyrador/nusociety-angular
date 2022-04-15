@@ -24,7 +24,7 @@
 		</tbody>
 	</table> -->
 
-<h3>Create New Staff</h3>
+<h2>Create New Staff</h2>
 <br/>
 
 <div *ngIf="resultSuccess == true" style="color:blue;">
@@ -40,7 +40,7 @@
 	<table>	
 		<tr>
 			<td width="20%" style="font-weight: bold;">Username</td>
-			<td><input id="username" name="username" #username="ngModel" type="text" placeholder="staff@gmail.com" [(ngModel)]="staff.username" required="true" /></td>
+			<td><input id="username" name="username" #username="ngModel" type="text" placeholder="Username" [(ngModel)]="staff.username" required="true" /></td>
 			<td>
 				<div *ngIf="username.invalid && (username.dirty || username.touched || submitted)" class="errorText">
 					<div *ngIf="username.errors?.['required']">
@@ -62,22 +62,11 @@
 		</tr>
 		<tr>
 			<td width="20%" style="font-weight: bold;">Password</td>
-			<td><input id="password" name="password" #password="ngModel" type="text" placeholder="password" [(ngModel)]="staff.password" required="true" /></td>
+			<td><input id="password" name="password" #password="ngModel" type="password" placeholder="Password" [(ngModel)]="staff.password" required="true" /></td>
 			<td>
 				<div *ngIf="password.invalid && (password.dirty || password.touched || submitted)" class="errorText">
 					<div *ngIf="password.errors?.['required']">
 						Password is required.
-					</div>
-				</div>
-			</td>
-		</tr>
-		<tr>
-			<td width="20%" style="font-weight: bold;">Profile Picture</td>
-			<td><input id="profilePicture" name="profilePicture" #profilePicture="ngModel" type="text" placeholder="99" [(ngModel)]="staff.profilePicture" required="false" /></td>
-			<td>
-				<div *ngIf="profilePicture.invalid && (profilePicture.dirty || profilePicture.touched || submitted)" class="errorText">
-					<div *ngIf="profilePicture.errors?.['required']">
-						Profile Picture is required.
 					</div>
 				</div>
 			</td>

@@ -47,7 +47,7 @@
 		</tr>
 		<tr>
 			<td width="20%" style="font-weight: bold;">Password</td>
-			<td><input id="password" name="password" #password="ngModel" type="text" placeholder="password" [(ngModel)]="student.password" required="true" /></td>
+			<td><input id="password" name="password" #password="ngModel" type="password" placeholder="password" [(ngModel)]="student.password" required="true" /></td>
 			<td>
 				<div *ngIf="password.invalid && (password.dirty || password.touched || submitted)" class="errorText">
 					<div *ngIf="password.errors?.['required']">

@@ -37,6 +37,13 @@ export class StudentService {
 		);
 	}
 
+	deleteStudent(studentId: number | undefined): Observable<any> {
+		return this.httpClient.delete<any>(this.baseUrl + "/" + studentId).pipe
+		(
+		  catchError(this.handleError)
+		);
+	  }
+
 	private handleError(error: HttpErrorResponse)
 	{
 		let errorMessage: string = "";

@@ -40,6 +40,8 @@ export class MainMenuComponent implements OnInit
         icon: 'pi pi-home',
         items: [{label: 'Home', icon: 'pi pi-home', routerLink: "/index"},
             {separator: true},
+            {label: 'Change Password', icon: "pi pi-id-card", routerLink: "/changePassword"},
+            {separator: true},
             {label: 'Logout', icon: 'pi pi-users', command: () => this.staffLogout()},
         ]
       }
@@ -60,9 +62,9 @@ export class MainMenuComponent implements OnInit
             {separator: true},
             {label: 'Manage Societies', icon: 'pi pi-users', routerLink: "/societyManagement"},
             {separator: true},
-            {label: 'Manage Posts', icon: 'pi pi-pencil', routerLink: "/commentManagement"},
+            {label: 'Manage Posts', icon: 'pi pi-pencil', routerLink: "/postManagement"},
             {separator: true},
-            {label: 'Manage Comments', icon: 'pi pi-send', routerLink: "/postManagement"},
+            {label: 'Manage Comments', icon: 'pi pi-send', routerLink: "/commentManagement"},
             {separator: true},
             {label: 'View Feedback Surveys', icon: 'pi pi-inbox', routerLink: "/viewFeedbackSurveys"},
             {separator: true},

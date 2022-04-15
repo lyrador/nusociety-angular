@@ -11,9 +11,19 @@ import { StudentService } from '../services/student.service';
 export class ViewAllStudentsComponent implements OnInit {
 
   students: Student[];
+  studentToView: Student;
+  displayDelete: boolean;
+
+  resultSuccess: boolean;
+  resultError: boolean;
+  message: string | undefined;
 
   constructor(private studentService: StudentService) {
     this.students = new Array();
+    this.studentToView = new Student();
+    this.displayDelete = false;
+    this.resultSuccess = false;
+    this.resultError = false;
    }
 
   ngOnInit(): void {
@@ -26,6 +36,29 @@ export class ViewAllStudentsComponent implements OnInit {
 			console.log('********** ViewAllStudentsComponent.ts: ' + error);
 		  }
 		});			
+  }
+
+  showDialogDelete(student: Student){
+    this.displayDelete = true;
+    this.studentToView = student;
+    console.log('Selected!')
+  }
+
+  delete() {
+    if(this.studentToView != null){
+      this.studentService.deleteStudent(this.studentToView.studentId).subscribe({
+        next:(response)=>{
+          this.resultSuccess = true;
+          this.resultError = false;
+          this.message = "Student deleted successfully!";
+        },
+        error:(error)=>{
+          this.resultError = true;
+          this.resultSuccess = false;
+          this.message = "An error has occurred while deleting the student: " + error;
+        }
+      });      
+    }
   }
 
 }

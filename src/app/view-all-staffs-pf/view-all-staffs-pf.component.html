@@ -1,15 +1,17 @@
 <h2>View All Staffs</h2>
-
+<br/>
 <p-table [value]="staffs">
     <ng-template pTemplate="header">
         <tr>					
             <th>Staff ID</th>
+            <th>Username</th>
             <th>Email</th>					
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-staff>
         <tr>
-            <td>{{staff.staffId}}</td>				
+            <td>{{staff.staffId}}</td>	
+            <td>{{staff.username}}</td>			
             <td>{{staff.email}}</td>					
         </tr>
     </ng-template>
