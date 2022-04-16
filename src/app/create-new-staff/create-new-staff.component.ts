@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { Staff } from '../models/staff';
+import { SessionService } from '../services/session.service';
 import { StaffService } from '../services/staff.service';
 
 @Component({
@@ -17,7 +19,7 @@ export class CreateNewStaffComponent implements OnInit {
   resultSuccess: boolean;
   resultError: boolean;
 
-  constructor(private staffService: StaffService) {
+  constructor(private router: Router, private sessionService: SessionService, private staffService: StaffService) {
     this.staff = new Staff();
 	this.submitted = false;
 	this.resultSuccess = false;
@@ -25,6 +27,7 @@ export class CreateNewStaffComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.checkAccessRight();
   }
 
   clear()
@@ -60,4 +63,12 @@ export class CreateNewStaffComponent implements OnInit {
             });			
         }
     }
+
+    checkAccessRight()
+  {
+    if(!this.sessionService.checkAccessRight(this.router.url))
+    {
+      this.router.navigate(["/accessRightError"]);
+    }
+  }
 }

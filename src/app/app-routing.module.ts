@@ -14,6 +14,11 @@ import { SocietyManagementComponent } from './society-management/society-managem
 import { ViewFeedbackSurveysComponent } from './view-feedback-surveys/view-feedback-surveys.component';
 import { CreateNewSocietyComponent } from './create-new-society/create-new-society.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { CreateNewSocietyCategoryComponent } from './create-new-society-category/create-new-society-category.component';
+import { ViewAllSocietiesComponent } from './view-all-societies/view-all-societies.component';
+import { AccessRightErrorComponent } from './access-right-error/access-right-error.component';
+import { CreateNewEventCategoryComponent } from './create-new-event-category/create-new-event-category.component';
+import { ViewAllEventCategoriesComponent } from './view-all-event-categories/view-all-event-categories.component';
 import { ViewStudentSocietiesComponent } from './view-student-societies/view-student-societies.component';
 
 const routes: Routes = [
@@ -31,6 +36,11 @@ const routes: Routes = [
   { path: 'viewFeedbackSurveys', component: ViewFeedbackSurveysComponent },
   { path: 'createNewSociety', component: CreateNewSocietyComponent},
   { path: 'changePassword', component: ChangePasswordComponent},
+  { path: 'createNewSocietyCategory', component: CreateNewSocietyCategoryComponent},
+  { path: 'viewAllSocieties', component: ViewAllSocietiesComponent},
+  { path: 'createNewEventCategory', component: CreateNewEventCategoryComponent},
+  { path: 'viewAllEventCategories', component: ViewAllEventCategoriesComponent},
+  { path: 'accessRightError', component: AccessRightErrorComponent}
   { path: 'viewStudentSocieties', component: ViewStudentSocietiesComponent },
   { path: 'viewStudentSocieties/:studentId', component: ViewStudentSocietiesComponent },
 ];

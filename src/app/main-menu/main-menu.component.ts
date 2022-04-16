@@ -28,7 +28,7 @@ export class MainMenuComponent implements OnInit
   ngOnInit(): void {
     this.home = [
       {
-        label: 'NUSociety',
+        label: 'Personal',
         icon: 'pi pi-home',
         items: [{label: 'Home', icon: 'pi pi-home', routerLink: "/index"},
       ]
@@ -36,7 +36,7 @@ export class MainMenuComponent implements OnInit
   ];
     this.homeLogout = [
         {
-        label: 'NUSociety',
+        label: 'Personal',
         icon: 'pi pi-home',
         items: [{label: 'Home', icon: 'pi pi-home', routerLink: "/index"},
             {separator: true},
@@ -60,11 +60,21 @@ export class MainMenuComponent implements OnInit
         icon: 'pi pi-users',
         items: [{label: 'Create New Society', icon: 'pi pi-user-plus', routerLink: "/createNewSociety"},
             {separator: true},
-            {label: 'Manage Societies', icon: 'pi pi-users', routerLink: "/societyManagement"},
+            {label: 'Manage Your Societies', icon: 'pi pi-user-edit', routerLink: "/societyManagement"},
+            {separator: true},
+            {label: 'View All Societies', icon: 'pi pi-users', routerLink: "/viewAllSocieties"},
+            {separator: true},
+            {label: 'Create New Society Category', icon: 'pi pi-plus', routerLink: "/createNewSocietyCategory"},
+            {separator: true},
+            {label: 'Manage Society Categories', icon: 'pi pi-book', routerLink: "/societyCategoryManagement"},
+            {separator: true},
+            {label: 'Create New Event Category', icon: 'pi pi-plus', routerLink: "/createNewEventCategory"},
+            {separator: true},
+            {label: 'Manage Event Categories', icon: 'pi pi-tags', routerLink: "/viewAllEventCategories"},
             {separator: true},
             {label: 'Manage Posts', icon: 'pi pi-pencil', routerLink: "/postManagement"},
             {separator: true},
-            {label: 'Manage Comments', icon: 'pi pi-send', routerLink: "/commentManagement"},
+            {label: 'Manage Comments', icon: 'pi pi-comment', routerLink: "/commentManagement"},
             {separator: true},
             {label: 'View Feedback Surveys', icon: 'pi pi-inbox', routerLink: "/viewFeedbackSurveys"},
             {separator: true},

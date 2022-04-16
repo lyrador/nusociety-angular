@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { SocietyCategory } from '../models/society-category';
+import { SessionService } from '../services/session.service';
 import { SocietyCategoryService } from '../services/society-category.service';
 
 @Component({
@@ -22,7 +24,7 @@ export class ViewSocietyCategoriesComponent implements OnInit {
 	resultError: boolean;
 	message: string | undefined;
 
-  constructor(private societyCategoryService: SocietyCategoryService) {
+  constructor(private router: Router, private societyCategoryService: SocietyCategoryService, private sessionService: SessionService) {
     this.societyCategories = new Array();
     this.displayUpdate = false;
     this.displayCreate = false;
@@ -34,6 +36,7 @@ export class ViewSocietyCategoriesComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.checkAccessRight();
     this.societyCategoryService.getSocietyCategories().subscribe({
       next:(response)=>{
         this.societyCategories = response;
@@ -61,27 +64,27 @@ export class ViewSocietyCategoriesComponent implements OnInit {
     console.log('Selected!')
   }
 
-  create(createSocietyCategoryForm: NgForm) {
-    if (createSocietyCategoryForm.valid) {
-      this.societyCategoryService.createNewSocietyCategory(this.newCategory).subscribe({
-        next:(response)=>{
-          this.resultSuccess = true;
-          this.resultError = false;
-          this.message = "Society category created successfully!";
+  // create(createSocietyCategoryForm: NgForm) {
+  //   if (createSocietyCategoryForm.valid) {
+  //     this.societyCategoryService.createNewSocietyCategory(this.newCategory).subscribe({
+  //       next:(response)=>{
+  //         this.resultSuccess = true;
+  //         this.resultError = false;
+  //         this.message = "Society category created successfully!";
 
-          this.newCategory = new SocietyCategory();
-          this.societyCategories.push(this.newCategory)
-          createSocietyCategoryForm.resetForm();
-          createSocietyCategoryForm.reset();
-        },
-        error:(error)=>{
-          this.resultError = true;
-          this.resultSuccess = false;
-          this.message = "An error has occurred while creating the society category: " + error;
-        }
-      });        
-    }
-  }
+  //         this.newCategory = new SocietyCategory();
+  //         this.societyCategories.push(this.newCategory)
+  //         createSocietyCategoryForm.resetForm();
+  //         createSocietyCategoryForm.reset();
+  //       },
+  //       error:(error)=>{
+  //         this.resultError = true;
+  //         this.resultSuccess = false;
+  //         this.message = "An error has occurred while creating the society category: " + error;
+  //       }
+  //     });        
+  //   }
+  // }
 
   delete() {
     if(this.categoryToView != null){
@@ -90,6 +93,7 @@ export class ViewSocietyCategoriesComponent implements OnInit {
           this.resultSuccess = true;
           this.resultError = false;
           this.message = "Society category deleted successfully!";
+          this.ngOnInit();
         },
         error:(error)=>{
           this.resultError = true;
@@ -108,6 +112,7 @@ export class ViewSocietyCategoriesComponent implements OnInit {
           this.resultSuccess = true;
           this.resultError = false;
           this.message = "Society category updated successfully!";
+          this.ngOnInit();
         },
         error:(error)=>{
           this.resultError = true;
@@ -115,6 +120,14 @@ export class ViewSocietyCategoriesComponent implements OnInit {
           this.message = "An error has occurred while updating the society category: " + error;
         }
       });        
+    }
+  }
+
+  checkAccessRight()
+  {
+    if(!this.sessionService.checkAccessRight(this.router.url))
+    {
+      this.router.navigate(["/accessRightError"]);
     }
   }
 

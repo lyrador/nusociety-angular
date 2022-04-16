@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Staff } from '../models/staff';
+import { SessionService } from '../services/session.service';
 import { StaffService } from '../services/staff.service';
 
 @Component({
@@ -12,11 +14,12 @@ export class ViewAllStaffsPfComponent implements OnInit {
 
   staffs: Staff[];
 
-  constructor(private staffService: StaffService) {
+  constructor(private router: Router, private sessionService: SessionService, private staffService: StaffService) {
     this.staffs = new Array();
    }
 
   ngOnInit(): void {
+    this.checkAccessRight();
     this.staffService.getStaffs().subscribe({
 		  next:(response)=>{
 			this.staffs = response;
@@ -25,6 +28,14 @@ export class ViewAllStaffsPfComponent implements OnInit {
 			console.log('********** ViewAllStaffsComponent.ts: ' + error);
 		  }
 		});			
+  }
+
+  checkAccessRight()
+  {
+    if(!this.sessionService.checkAccessRight(this.router.url))
+    {
+      this.router.navigate(["/accessRightError"]);
+    }
   }
 
 }

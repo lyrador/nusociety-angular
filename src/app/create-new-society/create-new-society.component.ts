@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { Society } from '../models/society';
 import { SocietyCategory } from '../models/society-category';
@@ -28,7 +29,8 @@ export class CreateNewSocietyComponent implements OnInit {
   resultError: boolean;
   message: string | undefined;
 
-  constructor(private societyService: SocietyService,
+  constructor(private router: Router,
+            private societyService: SocietyService,
               private sessionService: SessionService,
               private societyCategoryService: SocietyCategoryService,
               private staffService: StaffService) { 
@@ -43,6 +45,7 @@ export class CreateNewSocietyComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.checkAccessRight();
     let staffId = this.sessionService.getCurrentStaff().staffId
 
     this.societyCategoryService.getSocietyCategories().subscribe({
@@ -87,6 +90,14 @@ export class CreateNewSocietyComponent implements OnInit {
           this.message = "An error has occurred while creating the society: " + error;
         }
       });        
+    }
+  }
+
+  checkAccessRight()
+  {
+    if(!this.sessionService.checkAccessRight(this.router.url))
+    {
+      this.router.navigate(["/accessRightError"]);
     }
   }
 

@@ -19,6 +19,13 @@ export class SocietyService {
 
   constructor(private httpClient: HttpClient) { }
 
+  getAllSocieties(): Observable<Society[]> {
+    return this.httpClient.get<Society[]>(this.baseUrl + "/retrieveAllSocieties").pipe
+    (
+    catchError(this.handleError)
+    );
+  }
+
   getSocietiesForStaff(staffId: number | undefined): Observable<Society[]> {
     return this.httpClient.get<Society[]>(this.baseUrl + "/retrieveAllSocietiesForStaff/" + staffId).pipe
     (

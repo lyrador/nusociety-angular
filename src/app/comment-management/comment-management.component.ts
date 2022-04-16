@@ -6,6 +6,8 @@ import { PrimeNGConfig } from 'primeng/api';
 
 import { Comment } from '../models/comment';
 import { CommentService } from '../services/comment.service';
+import { Router } from '@angular/router';
+import { SessionService } from '../services/session.service';
 @Component({
   selector: 'app-comment-management',
   templateUrl: './comment-management.component.html',
@@ -25,7 +27,7 @@ export class CommentManagementComponent implements OnInit {
 
 
 
-  constructor(private commentService: CommentService, private primengConfig: PrimeNGConfig) {
+  constructor(private sessionService: SessionService, private router: Router, private commentService: CommentService, private primengConfig: PrimeNGConfig) {
     this.comments = new Array();
     this.infoMessage = '';
     this.errorMessage = '';
@@ -36,6 +38,7 @@ export class CommentManagementComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.checkAccessRight();
     this.primengConfig.ripple = true;
     this.commentService.retrieveAllComments().subscribe({
       next: (response) => {
@@ -53,7 +56,7 @@ export class CommentManagementComponent implements OnInit {
       next:(response)=>{
         this.infoMessage = "Comment ID:" + c.commentId + " updated successfully";
 				this.errorMessage = null;
-        window.location.reload();
+        this.ngOnInit();
       },
       error:(error)=>{
         this.infoMessage = null;
@@ -71,7 +74,7 @@ export class CommentManagementComponent implements OnInit {
         next:(response)=>{
           this.infoMessage = "Comment ID:" + c.commentId + " deleted successfully";
           this.errorMessage = null;
-          window.location.reload();
+          this.ngOnInit();
         },
         error:(error)=>{
           this.infoMessage = null;
@@ -81,5 +84,13 @@ export class CommentManagementComponent implements OnInit {
 
     }
 	}
+
+  checkAccessRight()
+  {
+    if(!this.sessionService.checkAccessRight(this.router.url))
+    {
+      this.router.navigate(["/accessRightError"]);
+    }
+  }
 
 }

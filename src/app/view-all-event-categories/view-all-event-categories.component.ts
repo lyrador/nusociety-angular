@@ -44,7 +44,7 @@ export class ViewAllEventCategoriesComponent implements OnInit {
       next:(response)=>{
         this.infoMessage = "Event Category ID:" + e.eventCategoryId + " updated successfully";
 				this.errorMessage = null;
-        window.location.reload();
+        this.ngOnInit();
       },
       error:(error)=>{
         this.infoMessage = null;
@@ -62,7 +62,7 @@ export class ViewAllEventCategoriesComponent implements OnInit {
         next:(response)=>{
           this.infoMessage = "Event Category ID:" + e.eventCategoryId + " deleted successfully";
           this.errorMessage = null;
-          window.location.reload();
+          this.ngOnInit();
         },
         error:(error)=>{
           this.infoMessage = null;
