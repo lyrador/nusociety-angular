@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AccessRightEnum } from '../models/access-right-enum';
+import {InputTextModule} from 'primeng/inputtext';
 
 import { Student } from '../models/student';
 import { StudentService } from '../services/student.service';

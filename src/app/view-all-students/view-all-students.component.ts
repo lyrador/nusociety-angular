@@ -101,7 +101,7 @@ export class ViewAllStudentsComponent implements OnInit {
 		  }
 		});
 
-    this.studentService.getSocietiesStudentIsIn(student.studentId).subscribe({
+    this.studentService.getSocietiesWhereStudentIsMemberOnly(student.studentId).subscribe({
 		  next:(response)=>{
 			this.societiesStudentIsIn = response;
 

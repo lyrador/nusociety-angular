@@ -75,7 +75,7 @@ export class ViewStudentSocietiesComponent implements OnInit {
         }
       });
 
-      this.studentService.getSocietiesStudentIsIn(parseInt(this.studentId)).subscribe({
+      this.studentService.getSocietiesWhereStudentIsMemberOnly(parseInt(this.studentId)).subscribe({
         next:(response)=>{
         this.societiesStudentIsIn = response;
         
@@ -112,7 +112,7 @@ export class ViewStudentSocietiesComponent implements OnInit {
 		  }
 		});
 
-    this.studentService.getSocietiesStudentIsIn(student.studentId).subscribe({
+    this.studentService.getSocietiesWhereStudentIsMemberOnly(student.studentId).subscribe({
 		  next:(response)=>{
 			this.societiesStudentIsIn = response;
 
@@ -132,13 +132,6 @@ export class ViewStudentSocietiesComponent implements OnInit {
     console.log(this.studentToView);
     
  }
-  // showDialogViewSocieties(student: Student){
-  //   this.displayViewSocieties = true;
-
-  //   this.initialiseStudentSocieties(student);
-
-  //   this.studentToView = student;
-  // }
 
   clearData() {
     this.leaderOrMemberStringArray.splice(0);

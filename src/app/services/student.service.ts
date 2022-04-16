@@ -37,8 +37,8 @@ export class StudentService {
 		);
 	}
 
-	getSocietiesStudentIsIn(studentId: number | undefined): Observable<Society[]> {
-		return this.httpClient.get<Society[]>(this.baseUrl + "/retrieveSocietiesStudentIsIn/" + studentId).pipe
+	getSocietiesWhereStudentIsMemberOnly(studentId: number | undefined): Observable<Society[]> {
+		return this.httpClient.get<Society[]>(this.baseUrl + "/retrieveSocietiesWhereStudentIsMemberOnly/" + studentId).pipe
 		(
 		catchError(this.handleError)
 		);
