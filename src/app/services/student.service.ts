@@ -43,6 +43,13 @@ export class StudentService {
 		catchError(this.handleError)
 		);
 	}
+
+	getSocietiesWhereStudentIsNotIn(studentId: number | undefined): Observable<Society[]> {
+		return this.httpClient.get<Society[]>(this.baseUrl + "/retrieveSocietiesWhereStudentIsNotIn/" + studentId).pipe
+		(
+		catchError(this.handleError)
+		);
+	}
 		
 	createNewStudent(newStudent: Student): Observable<number>
 	{		
@@ -63,6 +70,24 @@ export class StudentService {
 		let societyIdString: string  = String(selectedSocietyId) || '';
 		let makeStudentLeaderReq: MakeStudentLeaderReq = new MakeStudentLeaderReq(selectedStudent, societyIdString);	
 		return this.httpClient.post<number>(this.baseUrl, makeStudentLeaderReq, httpOptions).pipe
+		(
+		catchError(this.handleError)
+		);
+	}
+
+	addStudentToSociety(selectedStudent: Student, selectedSocietyId: number): Observable<any> {
+		let societyIdString: string  = String(selectedSocietyId) || '';
+		let makeStudentLeaderReq: MakeStudentLeaderReq = new MakeStudentLeaderReq(selectedStudent, societyIdString);	
+		return this.httpClient.post<number>(this.baseUrl + "/addStudentToSociety", makeStudentLeaderReq, httpOptions).pipe
+		(
+		catchError(this.handleError)
+		);
+	}
+
+	removeStudentFromSociety(selectedStudent: Student, selectedSocietyId: number): Observable<any> {
+		let societyIdString: string  = String(selectedSocietyId) || '';
+		let makeStudentLeaderReq: MakeStudentLeaderReq = new MakeStudentLeaderReq(selectedStudent, societyIdString);	
+		return this.httpClient.post<number>(this.baseUrl + "/removeStudentFromSociety", makeStudentLeaderReq, httpOptions).pipe
 		(
 		catchError(this.handleError)
 		);

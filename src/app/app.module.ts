@@ -29,7 +29,6 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MainMenuComponent } from './main-menu/main-menu.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { ViewAllStaffsComponent } from './view-all-staffs/view-all-staffs.component';
 import { CreateNewStaffComponent } from './create-new-staff/create-new-staff.component';
 import { ViewAllStaffsPfComponent } from './view-all-staffs-pf/view-all-staffs-pf.component';
 import { ViewAllStudentsComponent } from './view-all-students/view-all-students.component';
@@ -55,7 +54,6 @@ import { ViewStudentSocietiesComponent } from './view-student-societies/view-stu
     MainMenuComponent,
     SidebarComponent,
     HeaderComponent,
-    ViewAllStaffsComponent,
     CreateNewStaffComponent,
     ViewAllStaffsPfComponent,
     ViewAllStudentsComponent,

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Student } from '../models/student';
 import { Society } from '../models/society';
 import { StudentService } from '../services/student.service';
+import { SocietyService } from '../services/society.service';
 
 @Component({
   selector: 'app-view-student-societies',
@@ -21,12 +22,17 @@ export class ViewStudentSocietiesComponent implements OnInit {
   selectedNewSocietyToLead: number;
   students: Student[];
   studentToView: Student;
+  selectedNewSocietyToAdd: number;
+  availableSocieties: Society[];
+  selectedSocietyToRemove: number;
 
   defaultPosition: string
 
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
-    private studentService: StudentService) { 
+    private studentService: StudentService, 
+    private societyServce: SocietyService) { 
+
     this.studentId = null;
     this.displayViewSocieties = false;
     this.societiesLedByStudent = new Array();
@@ -37,6 +43,9 @@ export class ViewStudentSocietiesComponent implements OnInit {
     this.selectedNewSocietyToLead = 0;
     this.students = new Array();
     this.studentToView = new Student();
+    this.selectedNewSocietyToAdd = 0;
+    this.availableSocieties = new Array();
+    this.selectedSocietyToRemove = 0;
   }
 
   ngOnInit(): void {
@@ -84,6 +93,16 @@ export class ViewStudentSocietiesComponent implements OnInit {
           this.leaderOrMemberStringArray.push("MEMBER");
         }
         console.log(this.societiesStudentIsIn);
+        },
+        error:(error)=>{
+        console.log('********** ViewAllStudentsComponent.ts: ' + error);
+        }
+      });			
+
+      this.studentService.getSocietiesWhereStudentIsNotIn(parseInt(this.studentId)).subscribe({
+        next:(response)=>{
+        this.availableSocieties = response;
+        console.log(this.availableSocieties);
         },
         error:(error)=>{
         console.log('********** ViewAllStudentsComponent.ts: ' + error);
@@ -148,15 +167,24 @@ export class ViewStudentSocietiesComponent implements OnInit {
     }
   }
 
-  makeStudentLeaderOfSociety(student: Student) {
+  makeStudentLeaderOfSociety(society: Society) {
+    let societyId: number  = Number(society.societyId);
+
     this.initialiseStudentToView();
+
+    for (let i=0; i < this.students.length; i++){
+      let studentIdString: string  = String(this.students[i].studentId) || '';
+      if (studentIdString == this.studentId) {
+          this.studentToView = this.students[i];
+      }
+    }
 
     console.log("BYE");
     console.log(this.students);
 
     console.log(this.selectedNewSocietyToLead);
     if(this.studentToView != null){
-          this.studentService.makeStudentLeaderOfSociety(this.studentToView, this.selectedNewSocietyToLead).subscribe({
+          this.studentService.makeStudentLeaderOfSociety(this.studentToView, societyId).subscribe({
              next:(response)=>{
             //  this.resultSuccess = true;
             //  this.resultError = false;
@@ -200,5 +228,77 @@ export class ViewStudentSocietiesComponent implements OnInit {
           });      
     }
   }
+
+  addStudentToSociety(student: Student) {
+
+    for (let i=0; i < this.students.length; i++){
+      let studentIdString: string  = String(this.students[i].studentId) || '';
+      if (studentIdString == this.studentId) {
+          this.studentToView = this.students[i];
+      }
+    }
+
+    // this.initialiseStudentToView();
+
+    // console.log("BYE");
+    // console.log(this.students);
+
+    // console.log(this.selectedNewSocietyToLead);
+    if(this.studentToView != null){
+          this.studentService.addStudentToSociety(this.studentToView, this.selectedNewSocietyToAdd).subscribe({
+             next:(response)=>{
+            //  this.resultSuccess = true;
+            //  this.resultError = false;
+            //  this.message = "Student made leader successfully!";
+             window.location.reload();
+          },
+          error:(error)=>{
+            // this.resultError = true;
+            // this.resultSuccess = false;
+            // this.message = "An error has occurred while making student the leader: " + error;
+            }
+          });      
+    }
+
+    // this.displayViewSocieties = false;
+    // this.showDialogViewSocieties(student);
+  }
+
+  removeStudentFromSociety(society: Society) {
+    let societyId: number  = Number(society.societyId);
+
+    for (let i=0; i < this.students.length; i++){
+      let studentIdString: string  = String(this.students[i].studentId) || '';
+      if (studentIdString == this.studentId) {
+          this.studentToView = this.students[i];
+      }
+    }
+
+    // this.initialiseStudentToView();
+
+    // console.log("BYE");
+    // console.log(this.students);
+
+    // console.log(this.selectedNewSocietyToLead);
+    if(this.studentToView != null){
+          this.studentService.removeStudentFromSociety(this.studentToView, societyId).subscribe({
+             next:(response)=>{
+            //  this.resultSuccess = true;
+            //  this.resultError = false;
+            //  this.message = "Student made leader successfully!";
+             window.location.reload();
+          },
+          error:(error)=>{
+            // this.resultError = true;
+            // this.resultSuccess = false;
+            // this.message = "An error has occurred while making student the leader: " + error;
+            }
+          });      
+    }
+
+    // this.displayViewSocieties = false;
+    // this.showDialogViewSocieties(student);
+  }
+
 
 }
