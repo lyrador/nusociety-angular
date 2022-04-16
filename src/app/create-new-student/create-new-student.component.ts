@@ -46,7 +46,7 @@ export class CreateNewStudentComponent implements OnInit {
     this.submitted = true;
 
     if (createStudentForm.valid) {
-      this.studentService.createNewStudentWithEnum(this.student, this.accessRightSelectedString).subscribe({
+      this.studentService.createNewStudent(this.student).subscribe({
         next: (response) => {
           let studentId: number = response;
           this.resultSuccess = true;

@@ -19,6 +19,7 @@ import { ViewAllSocietiesComponent } from './view-all-societies/view-all-societi
 import { AccessRightErrorComponent } from './access-right-error/access-right-error.component';
 import { CreateNewEventCategoryComponent } from './create-new-event-category/create-new-event-category.component';
 import { ViewAllEventCategoriesComponent } from './view-all-event-categories/view-all-event-categories.component';
+import { ViewStudentSocietiesComponent } from './view-student-societies/view-student-societies.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/index', pathMatch: 'full' },
@@ -40,6 +41,8 @@ const routes: Routes = [
   { path: 'createNewEventCategory', component: CreateNewEventCategoryComponent},
   { path: 'viewAllEventCategories', component: ViewAllEventCategoriesComponent},
   { path: 'accessRightError', component: AccessRightErrorComponent}
+  { path: 'viewStudentSocieties', component: ViewStudentSocietiesComponent },
+  { path: 'viewStudentSocieties/:studentId', component: ViewStudentSocietiesComponent },
 ];
 
 @NgModule({

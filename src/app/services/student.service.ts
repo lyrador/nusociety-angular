@@ -4,7 +4,9 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 import { Student } from '../models/student';
+import { Society } from '../models/society';
 import { CreateStudentReq } from '../models/create-student-req';
+import { MakeStudentLeaderReq } from '../models/make-student-leader-req';
 
 const httpOptions = {
 	headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -27,11 +29,24 @@ export class StudentService {
 		catchError(this.handleError)
 		);
 	}
+
+	getSocietiesLedByStudent(studentId: number | undefined): Observable<Society[]> {
+		return this.httpClient.get<Society[]>(this.baseUrl + "/retrieveSocietiesLedByStudent/" + studentId).pipe
+		(
+		catchError(this.handleError)
+		);
+	}
+
+	getSocietiesStudentIsIn(studentId: number | undefined): Observable<Society[]> {
+		return this.httpClient.get<Society[]>(this.baseUrl + "/retrieveSocietiesStudentIsIn/" + studentId).pipe
+		(
+		catchError(this.handleError)
+		);
+	}
 		
-	createNewStudentWithEnum(newStudent: Student, accessRightSelectedString: string): Observable<number>
-	{	
-		let createStudentReq: CreateStudentReq = new CreateStudentReq(newStudent, accessRightSelectedString);	
-		return this.httpClient.put<number>(this.baseUrl, createStudentReq, httpOptions).pipe
+	createNewStudent(newStudent: Student): Observable<number>
+	{		
+		return this.httpClient.put<number>(this.baseUrl, newStudent, httpOptions).pipe
 		(
 		catchError(this.handleError)
 		);
@@ -43,6 +58,27 @@ export class StudentService {
 		  catchError(this.handleError)
 		);
 	  }
+
+	 makeStudentLeaderOfSociety(selectedStudent: Student, selectedSocietyId: number): Observable<any> {
+		let societyIdString: string  = String(selectedSocietyId) || '';
+		let makeStudentLeaderReq: MakeStudentLeaderReq = new MakeStudentLeaderReq(selectedStudent, societyIdString);	
+		return this.httpClient.post<number>(this.baseUrl, makeStudentLeaderReq, httpOptions).pipe
+		(
+		catchError(this.handleError)
+		);
+	}
+
+	unlinkStudentLeaderFromSociety(selectedStudent: Student, selectedSocietyId: number): Observable<any> {
+		let societyIdString: string  = String(selectedSocietyId) || '';
+		console.log('DEBUG');
+		console.log(selectedStudent);
+		console.log(societyIdString);
+		let makeStudentLeaderReq: MakeStudentLeaderReq = new MakeStudentLeaderReq(selectedStudent, societyIdString);	
+		return this.httpClient.post<number>(this.baseUrl + "/unlink", makeStudentLeaderReq, httpOptions).pipe
+		(
+		catchError(this.handleError)
+		);
+	}
 
 	private handleError(error: HttpErrorResponse)
 	{

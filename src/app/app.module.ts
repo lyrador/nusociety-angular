@@ -45,6 +45,7 @@ import { CreateNewSocietyCategoryComponent } from './create-new-society-category
 import { ViewAllSocietiesComponent } from './view-all-societies/view-all-societies.component';
 import { ViewAllEventCategoriesComponent } from './view-all-event-categories/view-all-event-categories.component';
 import { CreateNewEventCategoryComponent } from './create-new-event-category/create-new-event-category.component';
+import { ViewStudentSocietiesComponent } from './view-student-societies/view-student-societies.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { CreateNewEventCategoryComponent } from './create-new-event-category/cre
     CreateNewSocietyCategoryComponent,
     ViewAllSocietiesComponent,
     ViewAllEventCategoriesComponent,
-    CreateNewEventCategoryComponent
+    CreateNewEventCategoryComponent,
+    ViewStudentSocietiesComponent
   ],
   imports: [
     BrowserModule,

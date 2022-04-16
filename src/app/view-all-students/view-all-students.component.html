@@ -15,7 +15,8 @@
             <th>Name</th>
             <th>Username</th>
             <th>Email</th>	
-            <th>Action</th>					
+            <th>Action 1</th>	
+            <th>Action 2</th>
         </tr>
     </ng-template>
     <ng-template pTemplate="body" let-student>
@@ -26,7 +27,12 @@
             <td>{{student.email}}</td>	
             <td>
                 <button pButton type="button" label="Delete" class="p-button-danger" icon="pi pi-trash" (click)="showDialogDelete(student)"></button>
-            </td>	
+            </td>
+            <td>
+                <!-- <button pButton type="button" label="Configure Leadership" class="p-button-danger" icon="pi pi-trash" (click)="showDialogDelete(student)"></button> -->
+                <!-- <p-button label="View Societies" (click)="showDialogViewSocieties(student)"></p-button> -->
+                <a routerLink="/viewStudentSocieties/{{student.studentId}}">View Societies</a>
+            </td>		
         </tr>
     </ng-template>
 </p-table>
@@ -39,3 +45,41 @@
     <p-button label="No"></p-button>
 </p-dialog>
 
+<p-dialog *ngIf="displayViewSocieties" header="View Societies" [(visible)]="displayViewSocieties" [style]="{width: '50vw'}">
+    <br/>
+    <br/>
+
+    <div>Societies {{studentToView.name}} is in:</div>
+    <br/>
+
+    <!-- {{initialiseStudentSocieties(studentToView)}} -->
+
+    <p-table [value]="societiesCombined">
+        <ng-template pTemplate="header">
+            <tr>					
+                <th>Society ID</th>
+                <th>Society Name</th>
+                <th>Position</th>
+                <th>Action</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-society let-rowIndex="rowIndex">
+            <tr>
+                <td>{{society.societyId}}</td>				
+                <td>{{society.name}}</td>
+                <td>{{leaderOrMemberStringArray[rowIndex]}}</td>	
+                <td><button *ngIf="leaderOrMemberStringArray[rowIndex]==='LEADER'" pButton type="button" label="Unlink" class="p-button-danger" (click)="unlinkStudentLeaderFromSociety(society)"></button></td>	
+            </tr>
+        </ng-template>
+    </p-table>
+
+    <br/>
+    <br/>
+    <div>Make Student a Leader Of Society:</div>
+    <br/>
+    <p-dropdown [options]="societiesStudentIsIn" [(ngModel)]="selectedNewSocietyToLead" optionLabel="name" optionValue="societyId"></p-dropdown>
+
+    <br/>
+    <br/>
+    <p-button label="Make Leader" (onClick)="makeStudentLeaderOfSociety(studentToView)"></p-button>
+</p-dialog>
