@@ -1,8 +1,4 @@
 <h2>Society Category Management</h2>
-
-<br/>
-<p-button label="Create New Society Category" (onClick)="showDialogCreate()"></p-button>
-<br/>
 <br/>
 
 <div *ngIf="resultSuccess == true" style="color:blue;">
@@ -32,7 +28,7 @@
     </ng-template>
 </p-table>
 
-<p-dialog *ngIf="displayCreate" header="Create Society Category" [(visible)]="displayCreate" [style]="{width: '50vw'}">
+<!-- <p-dialog *ngIf="displayCreate" header="Create Society Category" [(visible)]="displayCreate" [style]="{width: '50vw'}">
     <form #createSocietyCategoryForm="ngForm" (ngSubmit)="create(createSocietyCategoryForm)">
         <table >
             <tr>
@@ -51,7 +47,7 @@
             </tr>
         </table>
     </form>
-</p-dialog>
+</p-dialog> -->
 
 <p-dialog *ngIf="displayUpdate" header="Update Society Category" [(visible)]="displayUpdate" [style]="{width: '50vw'}">
     <form #updateSocietyCategoryForm="ngForm" (ngSubmit)="update(updateSocietyCategoryForm)">

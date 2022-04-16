@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AccessRightEnum } from '../models/access-right-enum';
 
 import { Student } from '../models/student';
+import { SessionService } from '../services/session.service';
 import { StudentService } from '../services/student.service';
 
 @Component({
@@ -20,7 +22,7 @@ export class CreateNewStudentComponent implements OnInit {
   accessRightEnumListString: string[];
   accessRightSelectedString: string;
 
-  constructor(private studentService: StudentService) {
+  constructor(private router: Router, private sessionService: SessionService, private studentService: StudentService) {
     this.student = new Student();
     this.submitted = false;
     this.resultSuccess = false;
@@ -30,6 +32,7 @@ export class CreateNewStudentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.checkAccessRight();
     this.accessRightEnumListString.push("LEADER");
     this.accessRightEnumListString.push("MEMBER");
   }
@@ -62,6 +65,14 @@ export class CreateNewStudentComponent implements OnInit {
           console.log('********** CreateNewStudentComponent.ts: ' + error);
         }
       });
+    }
+  }
+
+  checkAccessRight()
+  {
+    if(!this.sessionService.checkAccessRight(this.router.url))
+    {
+      this.router.navigate(["/accessRightError"]);
     }
   }
 

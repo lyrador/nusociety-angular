@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { Society } from '../models/society';
 import { SocietyCategory } from '../models/society-category';
@@ -34,7 +35,8 @@ export class SocietyManagementComponent implements OnInit {
 
 
 
-  constructor(private societyService: SocietyService,
+  constructor(private router: Router,
+          private societyService: SocietyService,
               private sessionService: SessionService,
               private societyCategoryService: SocietyCategoryService,
               private staffService: StaffService) { 
@@ -53,6 +55,7 @@ export class SocietyManagementComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.checkAccessRight();
     let staffId = this.sessionService.getCurrentStaff().staffId
 
     this.societyService.getSocietiesForStaff(staffId).subscribe({
@@ -94,31 +97,31 @@ export class SocietyManagementComponent implements OnInit {
     console.log('Selected!')
   }
 
-  create(createSocietyForm: NgForm) {
-    if (createSocietyForm.valid) {
-      this.newSociety.dateCreated = new Date();
+  // create(createSocietyForm: NgForm) {
+  //   if (createSocietyForm.valid) {
+  //     this.newSociety.dateCreated = new Date();
 
-      this.societyService.createNewSociety(this.newSociety, this.societyCategoryIds, this.staffIds).subscribe({
-        next:(response)=>{
-          this.resultSuccess = true;
-          this.resultError = false;
-          this.message = "Society created successfully!";
+  //     this.societyService.createNewSociety(this.newSociety, this.societyCategoryIds, this.staffIds).subscribe({
+  //       next:(response)=>{
+  //         this.resultSuccess = true;
+  //         this.resultError = false;
+  //         this.message = "Society created successfully!";
 
-          this.newSociety = new Society();
-          this.societies.push(this.newSociety)
-          createSocietyForm.resetForm();
-          createSocietyForm.reset();
-        },
-        error:(error)=>{
-          this.resultError = true;
-          this.resultSuccess = false;
-          console.log('society cats ' + this.societyCategoryIds.length)
-          console.log(this.staffIds[0])
-          this.message = "An error has occurred while creating the society: " + error;
-        }
-      });        
-    }
-  }
+  //         this.newSociety = new Society();
+  //         this.societies.push(this.newSociety)
+  //         createSocietyForm.resetForm();
+  //         createSocietyForm.reset();
+  //       },
+  //       error:(error)=>{
+  //         this.resultError = true;
+  //         this.resultSuccess = false;
+  //         console.log('society cats ' + this.societyCategoryIds.length)
+  //         console.log(this.staffIds[0])
+  //         this.message = "An error has occurred while creating the society: " + error;
+  //       }
+  //     });        
+  //   }
+  // }
 
   delete() {
     if(this.societyToView != null){
@@ -127,6 +130,7 @@ export class SocietyManagementComponent implements OnInit {
           this.resultSuccess = true;
           this.resultError = false;
           this.message = "Society deleted successfully!";
+          this.ngOnInit();
         },
         error:(error)=>{
           this.resultError = true;
@@ -134,6 +138,14 @@ export class SocietyManagementComponent implements OnInit {
           this.message = "An error has occurred while deleting the society: " + error;
         }
       });      
+    }
+  }
+
+  checkAccessRight()
+  {
+    if(!this.sessionService.checkAccessRight(this.router.url))
+    {
+      this.router.navigate(["/accessRightError"]);
     }
   }
 

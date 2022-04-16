@@ -6,6 +6,8 @@ import { PrimeNGConfig } from 'primeng/api';
 
 import { Post } from '../models/post';
 import { PostService } from '../services/post.service';
+import { Router } from '@angular/router';
+import { SessionService } from '../services/session.service';
 
 @Component({
   selector: 'app-post-management',
@@ -26,7 +28,7 @@ export class PostManagementComponent implements OnInit {
 
 
 
-  constructor(private postService: PostService, private primengConfig: PrimeNGConfig) {
+  constructor(private router: Router, private sessionService: SessionService, private postService: PostService, private primengConfig: PrimeNGConfig) {
     this.posts = new Array();
     this.infoMessage = '';
     this.errorMessage = '';
@@ -37,6 +39,7 @@ export class PostManagementComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.checkAccessRight();
     this.primengConfig.ripple = true;
     this.postService.retrieveAllPosts().subscribe({
       next: (response) => {
@@ -55,7 +58,7 @@ export class PostManagementComponent implements OnInit {
       next:(response)=>{
         this.infoMessage = "Post ID:" + p.postId + " updated successfully";
 				this.errorMessage = null;
-        window.location.reload();
+        this.ngOnInit();
       },
       error:(error)=>{
         this.infoMessage = null;
@@ -73,7 +76,7 @@ export class PostManagementComponent implements OnInit {
         next:(response)=>{
           this.infoMessage = "Post ID:" + p.postId + " deleted successfully";
           this.errorMessage = null;
-          window.location.reload();
+          this.ngOnInit();
         },
         error:(error)=>{
           this.infoMessage = null;
@@ -82,5 +85,13 @@ export class PostManagementComponent implements OnInit {
       });
     }
 	}
+
+  checkAccessRight()
+  {
+    if(!this.sessionService.checkAccessRight(this.router.url))
+    {
+      this.router.navigate(["/accessRightError"]);
+    }
+  }
 
 }

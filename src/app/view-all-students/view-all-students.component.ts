@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Student } from '../models/student';
+import { SessionService } from '../services/session.service';
 import { StudentService } from '../services/student.service';
 
 @Component({
@@ -18,7 +20,7 @@ export class ViewAllStudentsComponent implements OnInit {
   resultError: boolean;
   message: string | undefined;
 
-  constructor(private studentService: StudentService) {
+  constructor(private studentService: StudentService, private sessionService: SessionService, private router: Router) {
     this.students = new Array();
     this.studentToView = new Student();
     this.displayDelete = false;
@@ -27,6 +29,7 @@ export class ViewAllStudentsComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.checkAccessRight();
     this.studentService.getStudents().subscribe({
 		  next:(response)=>{
 			this.students = response;
@@ -58,6 +61,13 @@ export class ViewAllStudentsComponent implements OnInit {
           this.message = "An error has occurred while deleting the student: " + error;
         }
       });      
+    }
+  }
+  checkAccessRight()
+  {
+    if(!this.sessionService.checkAccessRight(this.router.url))
+    {
+      this.router.navigate(["/accessRightError"]);
     }
   }
 

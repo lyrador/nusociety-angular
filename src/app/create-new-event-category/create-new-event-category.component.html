@@ -1,0 +1,37 @@
+<h2>Create New Event Category</h2>
+<br/>
+
+<div *ngIf="resultSuccess == true" style="color:blue;">
+	{{message}}
+</div>
+
+<div *ngIf="resultError == true" style="color:red;">
+	{{message}}
+</div>
+
+<form #createCategoryForm="ngForm" (ngSubmit)="createNewEventCategory(createCategoryForm)" >
+    
+    <table border="1">
+        <tbody>		
+            <tr>
+                <td width="20%" style="font-weight: bold;">Name</td>
+                <td><input id="name" name="name" #name="ngModel" type="text" placeholder="Sports" [(ngModel)]="eventCategory.categoryName" required="true" /></td>
+                <td>
+                    <div *ngIf="name.invalid && (name.dirty || name.touched || submitted)" class="errorText">
+                        <div *ngIf="name.errors?.['required']">
+                            Category name is required
+                        </div>
+                    </div>
+                </td>
+            </tr>	
+            
+            <tr>
+                <td colspan="3" style="text-align: center;">
+                    <button (click)="clear()">Clear</button>
+                    &nbsp;
+                    <input type="submit" value="Create New Event Category" />
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</form>

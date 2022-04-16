@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { Staff } from '../models/staff';
 import { StaffService } from '../services/staff.service';
 import { SessionService } from '../services/session.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-change-password',
@@ -23,7 +24,8 @@ export class ChangePasswordComponent implements OnInit {
   resultSuccess: boolean;
   resultError: boolean;
 
-  constructor(private staffService: StaffService,
+  constructor(private router: Router, 
+              private staffService: StaffService,
               private sessionService: SessionService) { 
     this.staff = new Staff();
 	  this.submitted = false;
@@ -32,6 +34,7 @@ export class ChangePasswordComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.checkAccessRight();
     this.staff = this.sessionService.getCurrentStaff();
     this.currentPassword = this.sessionService.getPassword();
   }
@@ -70,6 +73,14 @@ export class ChangePasswordComponent implements OnInit {
       this.message = "New passwords do not match"
     }
     
+  }
+
+  checkAccessRight()
+  {
+    if(!this.sessionService.checkAccessRight(this.router.url))
+    {
+      this.router.navigate(["/accessRightError"]);
+    }
   }
 
 }

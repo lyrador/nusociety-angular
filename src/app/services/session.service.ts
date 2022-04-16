@@ -69,60 +69,14 @@ export class SessionService {
   
   
   
-//   checkAccessRight(path : string): boolean
-//   {
-//     console.log("********** path: " + path);
+  checkAccessRight(path : string): boolean
+  {
+    console.log("********** path: " + path);
 
-//     if(this.getIsLogin())
-//     {
-//       let staff: Staff = this.getCurrentStaff();
-
-//       if(staff.accessRightEnum == AccessRightEnum.CASHIER)
-//       {
-//         if(path == "/cashierOperation/checkout" ||
-//             path == "/cashierOperation/voidRefund" ||
-//             path == "/cashierOperation/viewMySaleTransactions")
-//         {
-//           return true;
-//         }
-//         else
-//         {
-//           return false;
-//         }
-//       }
-//       else if(staff.accessRightEnum == AccessRightEnum.MANAGER)
-//       {
-//         if(path == "/cashierOperation/checkout" ||
-//             path == "/cashierOperation/voidRefund" ||
-//             path == "/cashierOperation/viewMySaleTransactions" ||
-//             path == "/systemAdministration/createNewStaff" ||
-//             path.startsWith("/systemAdministration/viewStaffDetails") ||
-//             path.startsWith("/systemAdministration/updateStaff") ||
-//             path.startsWith("/systemAdministration/deleteStaff") ||
-//             path == "/systemAdministration/viewAllStaffs" ||
-//             path == "/systemAdministration/createNewProduct" ||
-//             path.startsWith("/systemAdministration/viewProductDetails") ||
-//             path.startsWith("/systemAdministration/updateProduct") ||
-//             path.startsWith("/systemAdministration/deleteProduct") ||
-//             path == "/systemAdministration/viewAllProducts" ||
-//             path == "/systemAdministration/viewAllProductsPf" ||
-//             path == "/systemAdministration/searchProductsByName" ||
-//             path == "/systemAdministration/filterProductsByCategory" ||
-//             path == "/systemAdministration/filterProductsByTags")
-//         {
-//           return true;
-//         }
-//         else
-//         {
-//           return false;
-//         }
-//       }
-
-//       return false;
-//     }
-//     else
-//     {
-//       return false;
-//     }
-//   }
+    if(this.getIsLogin())
+    {
+      return true;
+    } 
+    return false;
+  }
 }
