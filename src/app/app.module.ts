@@ -41,6 +41,7 @@ import { SocietyManagementComponent } from './society-management/society-managem
 import { ViewFeedbackSurveysComponent } from './view-feedback-surveys/view-feedback-surveys.component';
 import { CreateNewSocietyComponent } from './create-new-society/create-new-society.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ViewStudentSocietiesComponent } from './view-student-societies/view-student-societies.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     SocietyManagementComponent,
     ViewFeedbackSurveysComponent,
     CreateNewSocietyComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    ViewStudentSocietiesComponent
   ],
   imports: [
     BrowserModule,

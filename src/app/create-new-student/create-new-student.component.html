@@ -56,33 +56,6 @@
 				</div>
 			</td>
 		</tr>
-        <tr>
-			<td width="20%" style="font-weight: bold;">Access Right</td>
-			<td>
-				<select id="accessRightEnum" name="accessRightEnum" #accessRightEnum="ngModel" [(ngModel)]="accessRightSelectedString" required="true">
-					<option *ngFor="let accessRightEnumOption of accessRightEnumListString" value="{{accessRightEnumOption}}">{{accessRightEnumOption}}</option>
-				</select>
-				
-			</td>
-			<td>
-				<div *ngIf="accessRightEnum.invalid && (accessRightEnum.dirty || accessRightEnum.touched || submitted)" class="errorText">
-					<div *ngIf="accessRightEnum.errors != null && accessRightEnum.errors['required']">
-						Access Right is required.
-					</div>
-				</div>
-			</td>
-		</tr>
-		<tr>
-			<td width="20%" style="font-weight: bold;">Profile Picture</td>
-			<td><input id="profilePicture" name="profilePicture" #profilePicture="ngModel" type="text" placeholder="99" [(ngModel)]="student.profilePicture" required="false" /></td>
-			<td>
-				<div *ngIf="profilePicture.invalid && (profilePicture.dirty || profilePicture.touched || submitted)" class="errorText">
-					<div *ngIf="profilePicture.errors?.['required']">
-						Profile Picture is required.
-					</div>
-				</div>
-			</td>
-		</tr>
 
 		<tr>
 			<td colspan="3" style="text-align: center;">

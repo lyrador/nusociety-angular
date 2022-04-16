@@ -14,6 +14,7 @@ import { SocietyManagementComponent } from './society-management/society-managem
 import { ViewFeedbackSurveysComponent } from './view-feedback-surveys/view-feedback-surveys.component';
 import { CreateNewSocietyComponent } from './create-new-society/create-new-society.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ViewStudentSocietiesComponent } from './view-student-societies/view-student-societies.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/index', pathMatch: 'full' },
@@ -29,7 +30,9 @@ const routes: Routes = [
   { path: 'societyManagement', component: SocietyManagementComponent },
   { path: 'viewFeedbackSurveys', component: ViewFeedbackSurveysComponent },
   { path: 'createNewSociety', component: CreateNewSocietyComponent},
-  { path: 'changePassword', component: ChangePasswordComponent}
+  { path: 'changePassword', component: ChangePasswordComponent},
+  { path: 'viewStudentSocieties', component: ViewStudentSocietiesComponent },
+  { path: 'viewStudentSocieties/:studentId', component: ViewStudentSocietiesComponent },
 ];
 
 @NgModule({
