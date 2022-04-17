@@ -4,7 +4,10 @@
     <div>Societies {{studentToView.name}} is in:</div>
     <br/>
 
-    <p-table [value]="societiesCombined">
+    <p-table #dt2 [value]="societiesCombined" dataKey="societyId" [rows]="10" [showCurrentPageReport]="true"
+        [rowsPerPageOptions]="[10,25,50]" [paginator]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {societiesCombined} entries"
+        [globalFilterFields]="['.societyId','name']">
         <ng-template pTemplate="header">
             <tr>					
                 <th>Society ID</th>
@@ -13,6 +16,18 @@
                 <th>Change Leadership</th>
                 <th>Delete Student</th>
             </tr>
+
+            <tr>
+                <th>
+                    <p-columnFilter type="text" field="societyId"></p-columnFilter>
+                </th>
+                <th>
+                    <p-columnFilter type="text" field="name"></p-columnFilter>
+                </th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
         </ng-template>
         <ng-template pTemplate="body" let-society let-rowIndex="rowIndex">
             <tr>
@@ -20,23 +35,13 @@
                 <td>{{society.name}}</td>
                 <td>{{leaderOrMemberStringArray[rowIndex]}}</td>	
                 <td>
-                    <button *ngIf="leaderOrMemberStringArray[rowIndex]==='LEADER'" pButton type="button" label="Demote" class="p-button-danger" (click)="unlinkStudentLeaderFromSociety(society)"></button>
-                    <button *ngIf="leaderOrMemberStringArray[rowIndex]==='MEMBER'" pButton type="button" label="Promote" (click)="makeStudentLeaderOfSociety(society)"></button>
+                    <button *ngIf="leaderOrMemberStringArray[rowIndex]==='LEADER'" pButton type="button" label="Demote " class="p-button-danger" (click)="unlinkStudentLeaderFromSociety(society)" ></button>
+                    <button *ngIf="leaderOrMemberStringArray[rowIndex]==='MEMBER'" pButton type="button" label="Promote" (click)="makeStudentLeaderOfSociety(society)" ></button>
                 </td>
                 <td><button pButton type="button" label="Remove From Society" class="p-button-danger" (click)="removeStudentFromSociety(society)"></button></td>		
             </tr>
         </ng-template>
     </p-table>
-<!-- 
-    <br/>
-    <br/>
-    <br/>
-    <div>Make Student a Leader Of Society:</div>
-    <br/>
-    <p-dropdown [options]="societiesStudentIsIn" [(ngModel)]="selectedNewSocietyToLead" optionLabel="name" optionValue="societyId" [style]="{width: '15vw'}"></p-dropdown>
-    &nbsp;
-    &nbsp;
-    <p-button *ngIf="societiesStudentIsIn.length > 0 " label="Make Leader" (onClick)="makeStudentLeaderOfSociety(studentToView)"></p-button> -->
 
     <br/>
     <br/>
@@ -47,13 +52,3 @@
     &nbsp;
     &nbsp;
     <p-button *ngIf="availableSocieties.length > 0 " label="Add Student" (onClick)="addStudentToSociety(studentToView)"></p-button>
-
-    <!-- <br/>
-    <br/>
-    <br/>
-    <div>Remove Student from Society: </div>
-    <br/>
-    <p-dropdown [options]="societiesCombined" [(ngModel)]="selectedSocietyToRemove" optionLabel="name" optionValue="societyId" [style]="{width: '15vw'}"></p-dropdown>
-    &nbsp;
-    &nbsp;
-    <p-button *ngIf="societiesCombined.length > 0 " label="Remove Student" (onClick)="removeStudentFromSociety(studentToView)"></p-button> -->

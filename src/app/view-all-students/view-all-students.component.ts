@@ -70,6 +70,18 @@ export class ViewAllStudentsComponent implements OnInit {
           this.resultSuccess = true;
           this.resultError = false;
           this.message = "Student deleted successfully!";
+          this.displayDelete = false;
+
+          this.studentService.getStudents().subscribe({
+            next:(response)=>{
+            this.students = response;
+            console.log(this.students[0]);
+            },
+            error:(error)=>{
+            console.log('********** ViewAllStudentsComponent.ts: ' + error);
+            }
+          });			
+
         },
         error:(error)=>{
           this.resultError = true;
@@ -198,5 +210,9 @@ export class ViewAllStudentsComponent implements OnInit {
           });      
     }
     this.initialiseStudentSocieties;
+  }
+
+  routeTo(student: Student) {
+    this.router.navigate(["/viewStudentSocieties/" + student.studentId]);
   }
 }

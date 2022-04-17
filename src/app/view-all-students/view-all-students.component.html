@@ -1,5 +1,7 @@
 <h2>View All Students</h2>
 
+<br/>
+
 <div *ngIf="resultSuccess == true" style="color:blue;">
     {{message}}
 </div>
@@ -8,7 +10,10 @@
     {{message}}
 </div>
 
-<p-table [value]="students">
+<p-table #dt2 [value]="students" dataKey="studentId" [rows]="10" [showCurrentPageReport]="true"
+        [rowsPerPageOptions]="[10,25,50]" [paginator]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {students} entries"
+        [globalFilterFields]="['.studentId','name','userName', 'email']">
     <ng-template pTemplate="header">
         <tr>					
             <th>Student ID</th>
@@ -18,6 +23,24 @@
             <th>Action 1</th>	
             <th>Action 2</th>
         </tr>
+
+        <tr>
+            <th>
+                <p-columnFilter type="text" field="studentId"></p-columnFilter>
+            </th>
+            <th>
+                <p-columnFilter type="text" field="name"></p-columnFilter>
+            </th>
+            <th>
+                <p-columnFilter type="text" field="userName"></p-columnFilter>
+            </th>
+            <th>
+                <p-columnFilter type="text" field="email"></p-columnFilter>
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+
     </ng-template>
     <ng-template pTemplate="body" let-student>
         <tr>
@@ -31,7 +54,8 @@
             <td>
                 <!-- <button pButton type="button" label="Configure Leadership" class="p-button-danger" icon="pi pi-trash" (click)="showDialogDelete(student)"></button> -->
                 <!-- <p-button label="View Societies" (click)="showDialogViewSocieties(student)"></p-button> -->
-                <a routerLink="/viewStudentSocieties/{{student.studentId}}">View Societies</a>
+                <!-- <a routerLink="/viewStudentSocieties/{{student.studentId}}">View Societies</a> -->
+                <button pButton type="button" label="View Societies" (click)="routeTo(student)"></button>
             </td>		
         </tr>
     </ng-template>

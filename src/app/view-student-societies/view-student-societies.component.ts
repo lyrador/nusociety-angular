@@ -56,9 +56,29 @@ export class ViewStudentSocietiesComponent implements OnInit {
     {
       console.log('HELLO');
 
+      this.displayViewSocieties = false;
+      this.societiesLedByStudent = new Array();
+      this.societiesStudentIsIn = new Array();
+      this.leaderOrMemberStringArray = new Array();
+      this.societiesCombined = new Array();
+      this.defaultPosition = "MEMBER";
+      this.selectedNewSocietyToLead = 0;
+      this.students = new Array();
+      this.selectedNewSocietyToAdd = 0;
+      this.availableSocieties = new Array();
+      this.selectedSocietyToRemove = 0;
+
       this.studentService.getStudents().subscribe({
         next:(response)=>{
         this.students = response;
+
+        for (let i=0; i < this.students.length; i++){
+          let studentIdString: string  = String(this.students[i].studentId) || '';
+          if (studentIdString == this.studentId) {
+              this.studentToView = this.students[i];
+          }
+        }
+
         },
         error:(error)=>{
         console.log('********** ViewAllStudentsComponent.ts: ' + error);
@@ -189,7 +209,8 @@ export class ViewStudentSocietiesComponent implements OnInit {
             //  this.resultSuccess = true;
             //  this.resultError = false;
             //  this.message = "Student made leader successfully!";
-             window.location.reload();
+            this.ngOnInit();
+            // window.location.reload();
           },
           error:(error)=>{
             // this.resultError = true;
@@ -215,7 +236,7 @@ export class ViewStudentSocietiesComponent implements OnInit {
           this.studentService.unlinkStudentLeaderFromSociety(this.studentToView, societyId).subscribe({
              next:(response)=>{
                this.ngOnInit();
-              window.location.reload();
+              //  window.location.reload();
             //  this.resultSuccess = true;
             //  this.resultError = false;
             //  this.message = "Student made leader successfully!";
@@ -250,7 +271,8 @@ export class ViewStudentSocietiesComponent implements OnInit {
             //  this.resultSuccess = true;
             //  this.resultError = false;
             //  this.message = "Student made leader successfully!";
-             window.location.reload();
+            this.ngOnInit();
+            // window.location.reload();
           },
           error:(error)=>{
             // this.resultError = true;
@@ -286,7 +308,8 @@ export class ViewStudentSocietiesComponent implements OnInit {
             //  this.resultSuccess = true;
             //  this.resultError = false;
             //  this.message = "Student made leader successfully!";
-             window.location.reload();
+            this.ngOnInit();
+            // window.location.reload();
           },
           error:(error)=>{
             // this.resultError = true;
